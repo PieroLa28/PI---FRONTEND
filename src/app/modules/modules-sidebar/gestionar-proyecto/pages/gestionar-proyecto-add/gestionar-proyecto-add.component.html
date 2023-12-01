@@ -1,0 +1,132 @@
+<h1 class="logo">AGREGAR PROYECTO</h1>
+<div class="content">
+  <div class="contact-wrapper animated bounceInUp">
+    <div class="contact-form">
+      <form class="formulario" >
+        <div class="cajaIzquierda">
+          <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="dataEdit.nombre">
+          </p>
+          <p>
+            <label for="tipo">Tipo</label>
+            <select (change)="tipoSelect($event)" name="tipo">
+              <option value="0" selected disabled>Seleccion un tipo</option>
+              <option *ngFor="let item of tipo_proyecto" value="{{item.id}}">{{item.nombre_tipo}}</option>
+            </select>
+          </p>
+          <p class="block">
+            <label for="objetivo">Objetivo</label>
+            <textarea name="objetivo" id="objetivo" rows="3" [(ngModel)]="dataEdit.objetivo"></textarea>
+          </p>
+          <p class="block">
+            <label for="descripcion">Descripción</label>
+            <textarea name="descripcion" id="descripcion" rows="3" [(ngModel)]="dataEdit.descripcion"></textarea>
+          </p>
+          <p>
+            <label for="presupuesto">Presupuesto</label>
+            <input type="number" name="presupuesto" id="presupuesto" [(ngModel)]="dataEdit.presupuesto">
+          </p>
+          <p>
+            <label for="codigo">Codigo</label>
+            <input type="text" name="codigo" id="codigo" [(ngModel)]="dataEdit.codigo">
+          </p>
+        </div>
+
+
+        <div class="cajaDerecha">
+          <p>
+            <label for="fecha_ini">Fecha Inicio</label>
+            <input type="date" name="fecha_ini" id="fecha_ini" [(ngModel)]="dataEdit.fechaInicio">
+          </p>
+          <p>
+            <label for="fecha_fin">Fecha Fin</label>
+            <input type="date" name="fecha_fin" id="fecha_fin" [(ngModel)]="dataEdit.fechaFin">
+          </p>
+          <p>
+            <label for="semestre">Semestre</label>
+            <select (change)="semestreSelect($event)" name="semestre">
+              <option value="0" selected disabled>Seleccion un semestre</option>
+              <option *ngFor="let item of semestre" value="{{item.id}}">{{item.anio+" - "+item.periodo}}</option>
+            </select>
+          </p>
+          <div>
+            <button type="button" (click)="getCursoAlumno(dataEdit.id)" class="btn btn-primary boton"
+              data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Seleccionar Cursos
+            </button>
+          </div>
+          <p>
+            <label for="localidad">Localidad</label>
+            <input type="text" name="localidad" id="localidad" [(ngModel)]="dataEdit.localidad">
+          </p>
+          <p>
+            <label for="benef">Población Beneficiada</label>
+            <input type="text" name="benef" id="benef" [(ngModel)]="dataEdit.poblacionBenef">
+          </p>
+          <input type="file" (change)="uploadFile($event)">
+        </div>
+        <p class="block">
+          <button type="submit"  (click)="guardar()">
+            Guardar
+          </button>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Cursos</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-body-filtros">
+          <select  (change)="selectCiclo($event)">
+            <option selected disabled value="0">Selecciona un Ciclo</option>
+            <option *ngFor="let item of ciclo" value="{{item.numero}}">{{item.numero}}</option>
+          </select>
+          <select (change)="selectFacultad($event)">
+            <option selected disabled value="0">Selecciona una Facultad</option>
+            <option *ngFor="let item of facultad" value="{{item.id}}">{{item.nombre}}</option>
+          </select>
+          <select (change)="selectEscuela($event)"> 
+            <option selected disabled value="0">Selecciona una Escuela</option>
+            <option *ngFor="let item of escuelas" value="{{item.id}}">{{item.nombre}}</option>
+          </select>
+        </div>
+        <div style="display: flex;">
+          <table class="table">
+            <thead class="table-light">
+              <th scope="col">CODIGO</th>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">ACCION</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cursos">
+                <td>{{item.codigo}}</td>
+                <td>{{item.nombre}}</td>
+                <td >
+                    <input (change)="CursoMock(item)"  type="checkbox" value="{{item.id}}" >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <div class="p-2" style="border: 2px solid black;" *ngFor="let item of data">
+              <span>{{item.nombre}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

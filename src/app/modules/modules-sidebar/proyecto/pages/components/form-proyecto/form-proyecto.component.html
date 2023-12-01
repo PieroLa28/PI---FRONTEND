@@ -1,0 +1,93 @@
+<form class="example-form" [formGroup]="formGroup" (ngSubmit)="send()">
+  <h2 class="header-form">Datos Personales</h2>
+  <div class="row">
+    <!-- nombre -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Nombres</mat-label>
+      <input type="text" matInput formControlName="nombres" [errorStateMatcher]="matcher" placeholder="Josue David">
+      <mat-error *ngIf="formGroup.get('nombres')?.hasError('required')">
+        El nombre es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- Apellidos -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Apellidos</mat-label>
+      <input type="text" matInput formControlName="apellidos" [errorStateMatcher]="matcher"
+        placeholder="Dominguez Huamani">
+      <mat-error *ngIf="formGroup.get('apellidos')?.hasError('required')">
+        El apellidos es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- email -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher"
+        placeholder="example@upeu.edu.pe">
+      <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
+        Introduce un email valido
+      </mat-error>
+      <mat-error *ngIf="formGroup.get('email')?.hasError('required')">
+        El email es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <!-- codigo -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Código</mat-label>
+      <input type="number" matInput formControlName="codigo" [errorStateMatcher]="matcher" placeholder="197010543">
+      <mat-error *ngIf="formGroup.get('codigo')?.hasError('required')">
+        El codigo es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+    <!-- dni -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Dni</mat-label>
+      <input type="number" matInput formControlName="dni" [errorStateMatcher]="matcher" placeholder="78923141">
+      <mat-error *ngIf="formGroup.get('dni')?.hasError('required')">
+        El dni es <strong>requerido</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <h2 class="header-form">Datos Académicos</h2>
+  <div class="row">
+    <!-- carrera -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Carrera</mat-label>
+      <input type="text" matInput formControlName="carrera" [matAutocomplete]="autocarrera">
+      <mat-autocomplete #autocarrera="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptionsCarrera | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <!-- ciclo -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Ciclo</mat-label>
+      <input type="text" matInput formControlName="ciclo" [matAutocomplete]="autociclo">
+      <mat-autocomplete #autociclo="matAutocomplete" [displayWith]="displayFn2">
+        <mat-option *ngFor="let option of filteredOptionsCiclo | async" [value]="option">
+          {{option.ciclo}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <!-- username -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Username</mat-label>
+      <input type="text" matInput formControlName="username" [errorStateMatcher]="matcher" placeholder="example123">
+    </mat-form-field>
+    <!-- Password -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <button mat-raised-button class="btn--agregar" type="submit">Agregar</button>
+    <a [routerLink]="['/home/proyecto/agregar']">cancelar</a>
+  </div>
+</form>

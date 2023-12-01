@@ -1,0 +1,54 @@
+.example-form {
+  width: 100%;
+  padding: 20px;
+  /* border: 3px dashed #003366 ; */
+  margin-top: 10px;
+}
+
+.example-full-width {
+  width: 30%;
+  margin: 0 10px;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.header-form{
+  padding-left: 15px;
+  text-transform: uppercase;
+  color: #003366;
+  font-weight: bolder;
+}
+
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+button{
+  outline: none;
+  background: none;
+  border: none;
+  margin-right: 10px;
+}
+
+.btn--agregar{
+  background-color: #003366 !important;
+  color: #ffff !important;
+}

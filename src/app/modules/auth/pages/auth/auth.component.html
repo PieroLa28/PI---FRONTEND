@@ -1,0 +1,10 @@
+<section class="container-login">
+    <div class="container" id="container">
+             <form [formGroup]="formLogin" (ngSubmit)="sendUser()">
+                 <div class="logo"></div>
+                 <input type="text" placeholder="Usuario" formControlName="user">
+                 <input type="password" placeholder="Contraseña" formControlName="password">
+                 <button (click)="sendUser()">Ingresar</button>
+             </form> 
+     </div>
+ </section>

@@ -1,0 +1,52 @@
+
+  <section class="table__body">
+    <!-- <button type="button" class="btn btn-primary mb-2" routerLink="/home/sidebar/gestionar-proyecto/add">Agregar</button> -->
+    <table>
+        <thead>
+            <tr>
+                <th> ID <span class="icon-arrow"></span></th>
+                <th> NOMBRE <span class="icon-arrow"></span></th>
+                <th> SEMESTRE <span class="icon-arrow"></span></th>
+                <th> LOCALIDAD<span class="icon-arrow"></span></th>
+                <th> TIPO <span class="icon-arrow"></span></th>
+                <th> ETAPA <span class="icon-arrow"></span></th>
+                <th> ACCIONES <span class="icon-arrow"></span></th>
+            </tr> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of proyectos">
+                <td>{{a.id}}</td>
+                <td>{{a.nombre}}</td>
+                <td>{{a.semestre.anio}} - {{a.semestre.periodo}}</td>
+                <td >{{a.localidad}}</td>
+                <td>{{a.tipo_proyecto.nombre_tipo}}</td>  
+                <td>Etapa 0</td>
+                <td class="acciones">
+                  <i routerLink="/home/sidebar/gestionar-proyecto/edit" (click)="editar(a)" class="fas fa-pen-to-square" style="cursor: pointer;"></i>
+                  <i class="fa-solid fa-trash"  (click)="deleteProyecto(a.id)" style="cursor: pointer; color: #f00000;"></i>
+                  <i class="fa-solid fa-paper-plane" style="color: #00f510; cursor: pointer;"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
